@@ -1,0 +1,24 @@
+{
+  "name": "Pusher Raffle",
+  "description": "Provides the essential parts of a raffle",
+  "repository": "https://github.com/benfoxall/pusher-raffle-backend",
+  "logo": "https://node-js-sample.herokuapp.com/node.png",
+  "keywords": ["node", "express", "static", "pusher", "auth"],
+  "env": {
+    "PUSHER_APP_ID": {
+      "description": "your application ID",
+      "required": true
+    },
+    "PUSHER_KEY": {
+      "description": "Your application key",
+      "required": true
+    },
+    "PUSHER_SECRET": {
+      "description": "Your application secret",
+      "required": true
+    },
+    "PUSHER_CLUSTER": {
+      "description": "Your application cluster (defaults to 'mt1')"
+    }
+  }
+}
