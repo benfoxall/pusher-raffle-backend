@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>raffle</title>
+  </head>
+  <body>
+
+    <script src="https://js.pusher.com/3.2/pusher.min.js"></script>
+    <script>
+
+      // Enable pusher logging - don't include this in production
+      Pusher.logToConsole = true;
+
+      var pusher = new Pusher('79ae41765b217d18c6b4', {
+        cluster: 'eu',
+        encrypted: true,
+        authEndpoint: 'http://localhost:3000/pusher/auth'
+      });
+
+      var channel = pusher.subscribe('presence-demo');
+      channel.bind('alert', function(data) {
+        alert(JSON.stringify(data))
+      });
+    </script>
+  </body>
+</html>

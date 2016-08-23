@@ -19,6 +19,9 @@
     },
     "PUSHER_CLUSTER": {
       "description": "Your application cluster (defaults to 'mt1')"
+    },
+    "PASSWORD": {
+      "description": "For the admin page"
     }
   }
 }
