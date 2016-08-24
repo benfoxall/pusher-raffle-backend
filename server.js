@@ -54,7 +54,8 @@ function pickUser(channel){
   })
 }
 
-app.post('/broadcast', (req, res, next) => {
+app.post('/broadcast', bodyParser.json(), (req, res, next) => {
+  console.log(req.body)
   if(req.body.PASSWORD !== process.env.PASSWORD)
     return res.sendStatus(401)
 
@@ -63,11 +64,11 @@ app.post('/broadcast', (req, res, next) => {
 
 
   pickUser('presence-demo')
-    .then( winner => {
+    .then( chosen => {
       pusher.trigger(
-        'presence-demo', event, { person: winner, value: value }
+        'presence-demo', event, { chosen: chosen, value: value }
       )
-      res.send('OK'+ JSON.stringify(winner))
+      res.send('OK'+ JSON.stringify(chosen))
     })
     .catch(next)
 

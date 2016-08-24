@@ -13,5 +13,57 @@
       <input type="submit" name="name" value="go">
     </form>
 
+    <label>
+      <input type="password" data-key="SECRET_TOKEN">
+    </label>
+
+    <button>color</button>
+    <button>sound</button>
+    <button>win</button>
+    <button>quick-win</button>
+    <button>reload</button>
+    <button>reset</button>
+
+    <script type="text/javascript">
+
+      [].forEach.call(document.querySelectorAll('[data-key]'), function(el){
+        var key = el.dataset.key
+
+        el.value = localStorage.getItem(key) || ''
+
+        el.addEventListener('change', function() {
+          localStorage.setItem(key, el.value)
+        })
+      });
+
+      [].forEach.call(document.querySelectorAll('button'), function(button){
+        button.addEventListener('click', function(e) {
+          e.preventDefault()
+
+          // var form = new FormData()
+          //
+          // form.append('PASSWORD', localStorage.getItem('SECRET_TOKEN'))
+          // form.append('EVENT', button.innerText)
+
+          fetch("/broadcast", {
+            // method: "POST",
+            // body: form
+
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              PASSWORD: localStorage.getItem('SECRET_TOKEN'),
+              EVENT: button.innerText,
+            })
+
+          })
+
+        }, false)
+      })
+
+    </script>
   </body>
 </html>
