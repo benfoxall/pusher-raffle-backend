@@ -4,38 +4,60 @@
     <meta charset="utf-8">
     <title>raffle</title>
     <meta name="viewport" content="initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
     <style media="screen">
       body, html {
+        font-family: 'Roboto', sans-serif;
         overflow: hidden;
         margin:0;
         padding:0;
         border:0;
         -webkit-perspective: 400px;
                 perspective: 400px;
+        width: 100vw;
+        height: 100vh;
       }
       canvas {
         display: block;
         -webkit-transform: rotateX(41deg) rotateZ(-27deg) rotateY(12deg);
                 transform: rotateX(41deg) rotateZ(-27deg) rotateY(12deg);
       }
+      #hello{
+        margin:0;
+        padding: .5em;
+        font-size: 1.25em;
+        font-weight: 100;
+        /*text-transform: uppercase;*/
+        color: rgba(0,0,0,0.9);
+        position: fixed;
+        z-index: 1;
+        font-size: 6vmin;
+        background: rgba(255,255,255,0.8);
+        top:0;
+        bottom:0;
+
+      }
+      p{margin:0;margin-bottom: .5em}
+      a{color: #fb503b; text-decoration: none;}
     </style>
   </head>
   <body>
+
+    <div id="hello" style="display:none">
+      <p>1/ Come and chat to <a target="_blank" href="https://twitter.com/benjaminbenben">Ben</a> and <a target="_blank" href="https://twitter.com/willsewell_">Will</a> <small>(we'll be at the afterparty🎉)</small></p>
+      <p>2/ Find out more stuff at <a target="_blank" href="https://pusher.com/?utm_source=prize-draw&utm_medium=real-life&utm_campaign=laracon">pusher.com</a></p>
+      <p>3/ Check out: <a target="_blank" href="https://laravel.com/docs/5.3/broadcasting">broadcasting / echo</a>, <a target="_blank" href="https://github.com/vinkla/laravel-pusher">laravel-pusher</a>, <a target="_blank" href="https://pusher-community.github.io/real-time-laravel/">our workshop</a> and <a target="_blank" href="https://blog.pusher.com/how-to-build-realtime-laravel-apps-with-pusher/">blog post</a> &amp; <a target="_blank" href="https://pusher.com/push-notifications?utm_source=prize-draw&utm_medium=real-life&utm_campaign=laracon">native mobile push</a></p>
+      <p>4/ Still want to win a <a target="_blank" href="http://www.sphero.com/starwars">BB8</a>?… <!--Fill out our form for a chance to win one-->
+      <a href="https://twitter.com/home?status=%40pusher%20%23bb8%20%5Ba%20link%20to%20something%20you're%20proud%20of%5D" target="_blank">Tweet @pusher</a> with <strong>#bb8</strong> and a link to something you're proud of</p>
+    </div>
 
     <script src="https://js.pusher.com/3.2/pusher.min.js"></script>
     <script>
     var logo=function(){function r(){t(!1,.001);document.removeEventListener("touchstart",r)}function u(){k.width=m=window.innerWidth;k.height=n=window.innerHeight;d=k.getContext("2d");d.translate(m/2,n/2);var a;a=.15*Math.min(m,n);d.scale(a,a);d.lineCap=d.lineJoin="round";d.lineWidth=.2;p=!0}function q(a){var c=(a%1+1)%1;a=(1>=(c*=2)?Math.pow(c,2):2-Math.pow(2-c,2))/2;a*=h.length-1;var e=h[0],c=h[Math.floor(a)],f=h[Math.ceil(a)],f=f||e;d.beginPath();d.moveTo(e[0],e[1]);for(e=0;e<a;e++)d.lineTo(h[e][0], h[e][1]);a%1&&(a=[c[0]+a%1*(f[0]-c[0]),c[1]+a%1*(f[1]-c[1])],d.lineTo(a[0],a[1]));d.stroke()}function v(a){requestAnimationFrame(v);if(p||l.length)p=!1,d.clearRect(-2.5,-2.5,5,5),d.strokeStyle=w,q(.999),l=l.filter(function(c){d.strokeStyle=c.a;var e=Math.abs((a-c.t)/4E3);q(e);return 1<=e?(q(.9999),w=c.a,!1):!0})}var t=function(){var a=[880,783.99,698.46,659.26,587.33,523.25,493.88];window.AudioContext=window.AudioContext||window.webkitAudioContext;window.context=parent.context||new AudioContext;return function(c, d){c=c||a[Math.floor(Math.random()*a.length)];d=d||.8;var f=context.createOscillator();f.frequency.value=Math.round(c);var g=context.createGain();g.gain.value=1E-4;now=context.currentTime;g.gain.cancelScheduledValues(now);g.gain.exponentialRampToValueAtTime(d,now+.25);g.gain.exponentialRampToValueAtTime(1E-4,now+2);g.gain.setTargetAtTime(1E-4,now+4,1E-4);f.connect(g);g.connect(context.destination);f.start(0);setTimeout(function(){f.stop(0);f.disconnect();g.disconnect()},2500)}}();document.addEventListener("touchstart", r,!1);var k=document.createElement("canvas");document.body.appendChild(k);var m,n,d,p=!0;u();window.addEventListener("resize",u,!1);var h=[[0,1],[1,1],[2,1],[2,0],[1,0],[1,1],[1,2],[0,2],[-1,2],[-1,1],[-1,0],[-1,-1],[-1,-2],[-2,-2],[-2,-1],[-2,0],[-2,1],[-1,1],[0,1]];d.strokeStyle="#aff";var l=[],w="#eee";requestAnimationFrame(v);var x=function(a){var c="#9600ff #66458e aquamarine #08f #f08 #fc0 #000 green".split(" ");return function(){a+=Math.ceil(Math.random()*(c.length-1));return c[a%c.length]}}(0); return function(a,c){a||(a=x());l.push({t:window.performance.now(),a:a});c||t()}}();
 
 
-    function reset(){
-      logo('#eee')
-    }
-    function win(){
-      logo('#fb503b')
-    }
-    function lose(){
-      logo('#eee')
-    }
+    function reset(){ logo('#eee') } function win(){ logo('#fb503b') } function lose(){ logo('#eee') }
 
 
     var _schedule = []
@@ -90,14 +112,6 @@
       });
 
       var channel = pusher.subscribe('presence-demo');
-      channel.bind('alert', function(data) {
-        alert(JSON.stringify(data))
-      });
-
-
-
-
-      var channel = pusher.subscribe('presence-demo');
       channel.bind('color', function(){
         logo(false, true)
       })
@@ -125,6 +139,9 @@
         schedule(data.chosen.id == channel.members.myID)
       })
 
+      channel.bind('hello', function(data) {
+        document.getElementById('hello').style.display = 'block';
+      })
 
 
 
